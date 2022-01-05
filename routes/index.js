@@ -12,17 +12,30 @@ router.get("/", async function (req, res) {
     .limit(query.limit || 10);
   const count = await Todo.countDocuments();
   console.log(`list`, list);
-  return res.send({ count, list });
+  return res.send({
+    count,
+    list,
+  });
 });
 router.put("/:id", async function (req, res) {
   const { id } = req.params;
-  await Todo.updateOne({ _id: id }, req.body);
-  return res.send({ message: "success" });
+  await Todo.updateOne(
+    {
+      _id: id,
+    },
+    req.body
+  );
+  return res.send({
+    message: "success",
+  });
 });
 router.post("/", async (req, res) => {
   const todo = await Todo.create(req.body);
   console.log(`todo`, todo, req.body);
-  return res.send({ message: "success" });
+  return res.send({
+    message: "success",
+    todo,
+  });
 });
 
 module.exports = router;
