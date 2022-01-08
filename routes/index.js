@@ -5,17 +5,20 @@ const Todo = require("../modal/todo");
 
 /* GET home page. */
 router.get("/", async function (req, res) {
-  const { query } = req;
-  console.log(`query`, query);
-  const list = await Todo.find({})
-    .skip(Number(query.skip || 0))
-    .limit(query.limit || 10);
-  const count = await Todo.countDocuments();
-  console.log(`list`, list);
-  return res.send({
-    count,
-    list,
-  });
+  try {
+    const { query } = req;
+    console.log(`query`, query);
+    const list = await Todo.find({})
+      .skip(Number(query.skip || 0))
+      .limit(query.limit || 10);
+    const count = await Todo.countDocuments();
+    return res.send({
+      count,
+      list,
+    });
+  } catch (error) {
+    return res.status(400).send({ message: "Bad request" });
+  }
 });
 router.put("/:id", async function (req, res) {
   const { id } = req.params;
