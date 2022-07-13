@@ -11,7 +11,7 @@ var indexRouter = require("./routes/index");
 var app = express();
 
 mongoose.connect(
-  "mongodb+srv://skv9397:sW3h9u06rTWKm7en@cluster0.uc9r0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  "mongodb+srv://skv9397:u9GOElrPDqfDtHk21@cluster0.uc9r0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
   () => {
     console.log("DB connected");
   }
